@@ -1,0 +1,25 @@
+body{
+    padding: 0px;
+    margin: 0px;
+}
+
+.main-edit{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    margin: 0px;
+    background-color: #c9df8a;
+    min-height: 1024px;
+}
+.main-titulo{
+    font-size: 80px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #234d20;
+}
+
+.main-parrafo{
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #36802d;
+}
