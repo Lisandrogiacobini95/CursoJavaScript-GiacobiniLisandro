@@ -2,6 +2,9 @@ body{
     padding: 0px;
     margin: 0px;
 }
+.main-edit-alert{
+    display: none;
+}
 
 .main-edit{
     display: flex;
@@ -12,14 +15,49 @@ body{
     background-color: #c9df8a;
     min-height: 1024px;
 }
-.main-titulo{
+.main-titulo, .display-1{
     font-size: 80px;
     font-family: 'Times New Roman', Times, serif;
     color: #234d20;
+}
+
+.cargar_alumno-edit, .buscar_alumno-edit, .pasar_lista-edit{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    text-align: center;
 }
 
 .main-parrafo{
     font-size: 30px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: #36802d;
+}
+
+.contenedor-botones{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+
+.botones{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+@media(min-width:768px){
+    .main-edit-alert{
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+    }
+
+    .main-edit{
+        display: none;
+    }
 }
