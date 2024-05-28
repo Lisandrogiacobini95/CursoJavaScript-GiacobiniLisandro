@@ -10,6 +10,7 @@ body{
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
     padding: 20px;
     margin: 0px;
     background-color: #c9df8a;
@@ -21,30 +22,36 @@ body{
     color: #234d20;
 }
 
-.cargar_alumno-edit, .buscar_alumno-edit, .pasar_lista-edit{
-    display: flex;
-    flex-direction: column;
-    gap:20px;
-    text-align: center;
-}
-
 .main-parrafo{
     font-size: 30px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: #36802d;
 }
 
-.contenedor-botones{
+.cargar_alumno-edit, .buscar_alumno-edit, .pasar_lista-edit, .contenedor-botones{
     display: flex;
     flex-direction: column;
+    gap:20px;
     text-align: center;
-    gap: 10px;
+    width: 80vw;
+}
+
+.resultado-busqueda{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .botones{
     display: flex;
     flex-direction: column;
     text-align: center;
+}
+
+.apellidoAlumno-buscar, .nombreAlumno-cargar, .apellidoAlumno-cargar, .gradoAlumno-cargar{
+    height: 5vh;
 }
 
 @media(min-width:768px){
