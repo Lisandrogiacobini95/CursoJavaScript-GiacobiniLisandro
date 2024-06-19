@@ -22,7 +22,7 @@ const cargar_datos_alumnos = async (nombre, apellido, grado) => {
         nombre: nombre.toUpperCase(),
         apellido: apellido.toUpperCase(),
         grado,
-        presente: 0
+        presente: "indefinido"
     }
 
     const response = await fetch(URL + "alumnos.json", {
@@ -30,7 +30,7 @@ const cargar_datos_alumnos = async (nombre, apellido, grado) => {
         body: JSON.stringify(alumno)
     })
 
-    mensaje("El alumno fue cargado exitosamente","success")
+    mensaje("El alumno fue cargado exitosamente","success","center")
     }
     catch (error) {
         console.log(error)
@@ -66,7 +66,7 @@ const buscar_datos_alumno = async (apellido, alumnos) => {
         }
     })
     if(alumnoEncontrado == 0){
-       mensaje("No se encuentra ningun alumno con ese apellido en nuestra base de datos","warning")
+       mensaje("No se encuentra ningun alumno con ese apellido en nuestra base de datos","warning","center")
     }
 
 }
@@ -83,7 +83,7 @@ const pasar_asistencia_alumnos = async (alumno) => {
                         <div class="card-body" id="${alumno.id}">
                             <h5 class="card-title"> ${alumno.nombre} ${alumno.apellido}</h5>
                             <p class="card-text">El alumno va a ${alumno.grado} año</p>
-                            <p class="card-text">Asistencia: ${alumno.presente}</p>
+                            <p class="card-text" id="asistencia-${alumno.id}">Asistencia: ${alumno.presente}</p>
                             <button type="button" id="btn-presente-${alumno.id}" class="btn btn-dark btn-presente">Presente</button>
                             <button type="button" id="btn-ausente-${alumno.id}" class="btn btn-dark btn-ausente">Ausente</button>
                         </div>
@@ -100,13 +100,18 @@ const alumno_presente = async (id) => {
             nombre: alumno.nombre,
             apellido: alumno.apellido,
             grado: alumno.grado,
-            presente: 1
+            presente: "Presente"
         } 
     
         await fetch(URL + `alumnos/${id}.json`, {
             method:"PUT",
             body: JSON.stringify(alumno_actualizado)
         })
+
+        const valorAsistencia = document.getElementById(`asistencia-${id}`)
+        valorAsistencia.innerText = `Asistencia: ${alumno_actualizado.presente}`
+        mensaje("La asistencia se modifico exitosamente","success","top-end")
+
 
     } catch (error) {
         console.log(error)
@@ -123,7 +128,7 @@ const alumno_ausente = async (id) => {
             nombre: alumno.nombre,
             apellido: alumno.apellido,
             grado: alumno.grado,
-            presente: 3
+            presente: "Ausente"
         } 
     
         await fetch(URL + `alumnos/${id}.json`, {
@@ -131,6 +136,9 @@ const alumno_ausente = async (id) => {
             body: JSON.stringify(alumno_actualizado)
         })
 
+        const valorAsistencia = document.getElementById(`asistencia-${id}`)
+        valorAsistencia.innerText = `Asistencia: ${alumno_actualizado.presente}`
+        mensaje("La asistencia se modifico exitosamente","success","top-end")
 
     } catch (error) {
         console.log(error)
@@ -138,12 +146,12 @@ const alumno_ausente = async (id) => {
 
 }
 
-const mensaje = (title,icon) => {
+const mensaje = (title,icon,position) => {
     Swal.fire({
         title,
         icon, /* warning, error, success, info, and question*/
         toast:true,
-        position:"center",
+        position,
         showConfirmButton: false,
         timer:3000
 
@@ -188,12 +196,11 @@ const main = async () => {
                 if(event.target && event.target.classList.contains("btn-presente")){
                     const parentElement = event.target.parentElement
                     await alumno_presente(parentElement.id)
-                    location.reload()
+                    //location.reload()
                     
                 }else if(event.target && event.target.classList.contains("btn-ausente")){
                     const parentElement = event.target.parentElement
                     await alumno_ausente(parentElement.id)
-                    location.reload()
                 }
 
              })
